@@ -10,4 +10,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'hecks-app'
   s.add_dependency 'activemodel'
+
+  s.add_development_dependency 'lean_coffee'
 end
