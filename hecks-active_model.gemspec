@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'support@the_good_guys.com'
   s.files       = Dir['{lib, bin}/**/*']
 
-  s.add_dependency 'activemodel', '~> 6.0'
-  s.add_dependency 'hecks-app', '~> 0.1'
+  s.add_dependency 'activemodel', '~> 5.2'
+  s.add_dependency 'hecks-app', '0.1.0'
 end
