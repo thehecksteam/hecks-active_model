@@ -12,7 +12,11 @@ module Hecks
             root.include(::ActiveModel::Model)
 
             root.define_singleton_method :model_name do
-              "#{aggregate.name}::#{root_name}"
+              ::ActiveModel::Name.new(
+                self,
+                nil,
+                "#{aggregate.name}::#{root_name}"
+              )
             end
           end
       end
