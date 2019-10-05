@@ -7,7 +7,17 @@ describe Hecks::ActiveModel do
     end
 
     it do
-      expect(APP[:Meetings].runnable.model_name).to eq('Meetings::Meeting')
+      expect(APP[Meetings: :Meeting].runnable.model_name).to eq('Meetings::Meeting')
+    end
+
+    it '#to_param' do
+      meeting = APP[:Meetings].new(
+        participants: [],
+        discussion: nil, 
+        timebox: nil, 
+        id: 3
+      ).to_param
+      expect(meeting.to_param).to eq '3'
     end
   end
 end
