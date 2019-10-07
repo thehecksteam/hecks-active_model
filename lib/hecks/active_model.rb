@@ -2,6 +2,8 @@ require 'hecks-app'
 
 module Hecks
   module ActiveModel
+    HecksApp::ApplicationPort.subscribe(self, :AppConfigured)
+
     def self.decorate
       HecksApp::DOMAIN_SCHEMA.aggregates.each do |aggregate_from_schema|
         HecksApp::ApplicationPort
@@ -24,6 +26,13 @@ module Hecks
             end
           end
       end
+    end
+
+    # The Application port will call this method once the app is configured
+    def self.notify(event)
+      return unless event == :AppConfigured
+
+      decorate
     end
   end
 end
