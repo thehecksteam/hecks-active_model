@@ -12,9 +12,23 @@ module Hecks
             aggregate.constants.each do |domain_model_name|
               aggregate.const_get(domain_model_name).tap do |domain_model|
                 domain_model.include(::ActiveModel::Model)
+
                 domain_model.define_method(:to_param) do
                   @id.to_s
                 end
+
+                domain_model.define_method(:new_record?) do
+                  send(self.class.primary_key).nil?
+                end
+
+                domain_model.define_method(:persisted?) do
+                  id.present?
+                end
+
+                domain_model.define_singleton_method :primary_key do
+                  :id
+                end
+
                 domain_model.define_singleton_method :model_name do
                   ::ActiveModel::Name.new(
                     self,
